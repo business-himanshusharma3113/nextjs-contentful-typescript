@@ -1,1 +1,1 @@
-export type { TypeBlogPost, TypeBlogPostFields, TypeBlogPostSkeleton } from './TypeBlogPost'
+export type { TypepageBlogPost, TypepageBlogPostFields, TypepageBlogPostSkeleton } from './TypepageBlogPost'

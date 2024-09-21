@@ -1,19 +1,19 @@
 import { draftMode } from 'next/headers'
-import { fetchBlogPosts } from '../contentful/blogPosts'
+import { fetchpageBlogPosts } from '@/contentful/pageBlogPosts'
 import Link from 'next/link'
 
 async function Home() {
-	const blogPosts = await fetchBlogPosts({ preview: draftMode().isEnabled })
+	const pageBlogPosts = await fetchpageBlogPosts({ preview: draftMode().isEnabled })
 
 	return (
 		<main className="p-[6vw]">
 			<div className="prose">
 				<h1>My Contentful Blog</h1>
 				<ul>
-					{blogPosts.map((blogPost) => {
+					{pageBlogPosts.map((pageBlogPost) => {
 						return (
-							<li key={blogPost.slug}>
-								<Link href={`/${blogPost.slug}`}>{blogPost.title}</Link>
+							<li key={pageBlogPost.slug}>
+								<Link href={`/${pageBlogPost.slug}`}>{pageBlogPost.title}</Link>
 							</li>
 						)
 					})}

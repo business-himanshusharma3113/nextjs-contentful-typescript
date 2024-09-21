@@ -1,40 +1,40 @@
 import { Metadata, ResolvingMetadata } from 'next'
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
-import { fetchBlogPost, fetchBlogPosts } from '../../contentful/blogPosts'
+import { fetchpageBlogPost, fetchpageBlogPosts } from '../../contentful/pageBlogPosts'
 import Link from 'next/link'
 import RichText from '../../contentful/RichText'
 
-interface BlogPostPageParams {
+interface pageBlogPostPageParams {
 	slug: string
 }
 
-interface BlogPostPageProps {
-	params: BlogPostPageParams
+interface pageBlogPostPageProps {
+	params: pageBlogPostPageParams
 }
 
-export async function generateStaticParams(): Promise<BlogPostPageParams[]> {
-	const blogPosts = await fetchBlogPosts({ preview: false })
+export async function generateStaticParams(): Promise<pageBlogPostPageParams[]> {
+	const pageBlogPosts = await fetchpageBlogPosts({ preview: false })
 
-	return blogPosts.map((post) => ({ slug: post.slug }))
+	return pageBlogPosts.map((post) => ({ slug: post.slug }))
 }
 
-export async function generateMetadata({ params }: BlogPostPageProps, parent: ResolvingMetadata): Promise<Metadata> {
-	const blogPost = await fetchBlogPost({ slug: params.slug, preview: draftMode().isEnabled })
+export async function generateMetadata({ params }: pageBlogPostPageProps, parent: ResolvingMetadata): Promise<Metadata> {
+	const pageBlogPost = await fetchpageBlogPost({ slug: params.slug, preview: draftMode().isEnabled })
 
-	if (!blogPost) {
+	if (!pageBlogPost) {
 		return notFound()
 	}
 
 	return {
-		title: blogPost.title,
+		title: pageBlogPost.title,
 	}
 }
 
-export default async function BlogPostPage({ params }: BlogPostPageProps) {
-	const blogPost = await fetchBlogPost({ slug: params.slug, preview: draftMode().isEnabled })
+export default async function pageBlogPostPage({ params }: pageBlogPostPageProps) {
+	const pageBlogPost = await fetchpageBlogPost({ slug: params.slug, preview: draftMode().isEnabled })
 
-	if (!blogPost) {
+	if (!pageBlogPost) {
 		return notFound()
 	}
 
@@ -42,17 +42,17 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 		<main className="p-[6vw]">
 			<Link href="/">← Posts</Link>
 			<div className="prose mt-8 border-t pt-8">
-				{blogPost.image && (
+				{pageBlogPost.image && (
 					<img
-						src={blogPost.image.src}
-						srcSet={`${blogPost.image.src}?w=300 1x, ${blogPost.image.src} 2x`}
+						src={pageBlogPost.image.src}
+						srcSet={`${pageBlogPost.image.src}?w=300 1x, ${pageBlogPost.image.src} 2x`}
 						width={300}
 						height={300}
-						alt={blogPost.image.alt}
+						alt={pageBlogPost.image.alt}
 					/>
 				)}
-				<h1>{blogPost.title}</h1>
-				<RichText document={blogPost.body} />
+				<h1>{pageBlogPost.title}</h1>
+				<RichText document={pageBlogPost.body} />
 			</div>
 		</main>
 	)

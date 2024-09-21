@@ -9,7 +9,7 @@
             "id": "e6bu18b008u6"
           }
         },
-        "id": "blogPost",
+        "id": "pageBlogPost",
         "type": "ContentType",
         "createdAt": "2023-05-13T15:32:05.715Z",
         "updatedAt": "2023-05-13T16:14:23.344Z",
@@ -163,7 +163,7 @@
         },
         "contentType": {
           "sys": {
-            "id": "blogPost",
+            "id": "pageBlogPost",
             "type": "Link",
             "linkType": "ContentType"
           }
@@ -296,7 +296,7 @@
           "sys": {
             "type": "Link",
             "linkType": "ContentType",
-            "id": "blogPost"
+            "id": "pageBlogPost"
           }
         }
       },
@@ -578,7 +578,7 @@
           "sys": {
             "type": "Link",
             "linkType": "ContentType",
-            "id": "blogPost"
+            "id": "pageBlogPost"
           }
         }
       },
@@ -860,7 +860,7 @@
           "sys": {
             "type": "Link",
             "linkType": "ContentType",
-            "id": "blogPost"
+            "id": "pageBlogPost"
           }
         }
       },
@@ -1142,7 +1142,7 @@
           "sys": {
             "type": "Link",
             "linkType": "ContentType",
-            "id": "blogPost"
+            "id": "pageBlogPost"
           }
         }
       },
