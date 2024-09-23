@@ -9,19 +9,18 @@ export interface ContentImage {
 
 export function parseContentfulContentImage(
 	asset?: Asset<undefined, string> | { sys: AssetLink }
-): ContentImage | null {
-	if (!asset) {
-		return null
+  ): ContentImage | null {
+	if (!asset || !('fields' in asset)) {
+	  return null;
 	}
-
-	if (!('fields' in asset)) {
-		return null
-	}
-
+  
+	const url = asset.fields.file?.url || '';
+	const fullUrl = url.startsWith('//') ? `https:${url}` : url;
+  
 	return {
-		src: asset.fields.file?.url || '',
-		alt: asset.fields.description || '',
-		width: asset.fields.file?.details.image?.width || 0,
-		height: asset.fields.file?.details.image?.height || 0,
+	  src: fullUrl,
+	  alt: asset.fields.description || '',
+	  width: asset.fields.file?.details.image?.width || 0,
+	  height: asset.fields.file?.details.image?.height || 0,
 	}
-}
+  }
